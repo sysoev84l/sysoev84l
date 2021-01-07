@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.text-shadow {
+  text-shadow: 3px 4px 3px #2E8B57 !important;
+  /* Параметры тени */
+}
+
+.rotate {
+  display: inline-block;
+  transition-duration: 1s !important;
+}
+.rotate:active {
+  transform: rotate(360deg);
+}

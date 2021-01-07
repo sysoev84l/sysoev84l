@@ -1,0 +1,25 @@
+/*Fonts*/
+@font-face {
+  font-family: ElizabetaModern;
+  src: url("../fonts/elizabeta-modern.woff2") format("woff2"), url("../fonts/ElizabetaModern.woff") format("woff");
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: luvable;
+  src: url("../fonts/luvable.woff2") format("woff2"), url("../fonts/luvable.woff") format("woff");
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: a_MachinaOrtoSls-Bold;
+  src: url("../fonts/a_machinaortosls-bold.woff2") format("woff2"), url("../fonts/a_MachinaOrtoSls-Bold.woff") format("woff");
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: andantinoscript;
+  src: url("../fonts/andantinoscript.woff2") format("woff2"), url("../fonts/andantinoscript.woff") format("woff");
+  font-display: fallback;
+}
+/*# sourceMappingURL=fonts.css.map */

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Кругом одни еврии</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			width: 100%;
+			height: 100%;
+			font-family: sans-serif;
+		}
+		.wrap {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.card__wrapper {
+			margin: 20px auto;
+			width: 600px;
+			height: 300px;
+			font-size: 30px;
+			position: relative;
+			perspective: 1000px; 
+		}
+		.card__wrapper:hover .card__front {
+			transform: rotateY(180deg); 
+		}
+		.card__wrapper:hover .card__back {
+			transform: rotateY(360deg); 
+		}
+		.card__front, .card__back {
+			padding-left: 20px;
+			padding-right: 20px;
+			text-align: center;
+			border-radius: 10px;
+			border: 1px solid #000;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: 1s;
+			backface-visibility: hidden;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+		.card__front {
+			background-color: #fff; 
+		}
+		.card__back {
+			background-color: #d3d3d3;
+			transform: rotateY(180deg); 
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="card__wrapper">
+			<div class="card__front">
+				<span>Говорят, Хемингуэй<br>по анкетам был еврей!!</span>
+			</div>
+			<div class="card__back">
+				<span>Говорят, что Аджубей<br>в детстве тоже был еврей!!</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

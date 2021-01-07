@@ -1,0 +1,6 @@
+models
+node_modules
+.sass-cache
+.vscode
+package.json
+package-lock.json

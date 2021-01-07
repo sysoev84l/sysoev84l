@@ -1,0 +1,30 @@
+@link-hover:green;
+@link:red;
+@text-color:#000;
+
+.content {
+	margin: 20px auto;
+}
+p{
+	color: @text-color;
+	a {
+		display:inline-block;
+		transition-property: all;
+		transition-duration: 1s;
+		font-size: 18px;
+		text-decoration: none;
+		color: @link;
+	}
+	a:hover{
+		font-size: 24px;
+		text-decoration: none;
+		color: @link-hover;
+	}
+}
+footer {
+	padding-top: 10px;
+	h3{
+		text-transform: uppercase;
+		letter-spacing: 5px;
+	}
+}

@@ -1,0 +1,26 @@
+.content {
+  margin: 20px auto;
+}
+p {
+  color: #000000;
+}
+p a {
+  display: inline-block;
+  transition-property: all;
+  transition-duration: 1s;
+  font-size: 18px;
+  text-decoration: none;
+  color: #ff0000;
+}
+p a:hover {
+  font-size: 24px;
+  text-decoration: none;
+  color: #008000;
+}
+footer {
+  padding-top: 10px;
+}
+footer h3 {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
