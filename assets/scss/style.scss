@@ -1,7 +1,7 @@
 /* css  */
 @import "fonts.scss";
 @import "scroll.scss";
-//Var
+/*Var*/
 $header_bg_color: #000;
 $header_color: #fff;
 $h1_color: #f00;
@@ -11,10 +11,10 @@ $main_bg_color: #4b0082;
 $h1_fz: 36px;
 $h2_color: #ffa500;
 $h2_fz: 24px;
-// UPD упрощенная формула (медиа запрос не нужен)
-// font-size: calc(24px + 16 * ((100vw - 320px) / (1280 - 320)));
+/* UPD упрощенная формула (медиа запрос не нужен)*/
+/* font-size: calc(24px + 16 * ((100vw - 320px) / (1280 - 320)));*/
 
-// SCSS Миксин:
+/* SCSS Миксин:*/
 $maxWidth: 1280;
 @mixin adaptiv-fsont($pcSize, $mobSize) {
  $addSize: $pcSize - $mobSize;
@@ -113,7 +113,7 @@ h1,h2 {
 	h1 {
 		color: $h1_color;
 		font-size: $h1_fz;
-		//@include adaptiv-font(36, 18);
+		/*@include adaptiv-font(36, 18);*/
 		align-self: flex-end;
 	}
 	h2 {

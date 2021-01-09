@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* css  */
 /*Fonts*/
 @font-face {
@@ -36,6 +37,10 @@
   width: 0%; }
 
 /* End Scroll */
+/*Var*/
+/* UPD упрощенная формула (медиа запрос не нужен)*/
+/* font-size: calc(24px + 16 * ((100vw - 320px) / (1280 - 320)));*/
+/* SCSS Миксин:*/
 body {
   margin: 0;
   padding: 0;
@@ -119,6 +124,7 @@ h1, h2 {
   .section__title h1 {
     color: #f00;
     font-size: 36px;
+    /*@include adaptiv-font(36, 18);*/
     align-self: flex-end; }
   .section__title h2 {
     color: #ffa500;
