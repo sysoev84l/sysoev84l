@@ -52,7 +52,12 @@ body {
 .wrapper {
   width: 100%;
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100%; }
 
@@ -64,22 +69,38 @@ header {
 
 .rotate {
   display: inline-block;
+  -webkit-transition-duration: 1s !important;
+  -o-transition-duration: 1s !important;
   transition-duration: 1s !important; }
   .rotate:hover {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
     transform: rotate(360deg);
     font-size: 200%; }
 
 .nav__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center; }
 
 .nav__menu {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
   flex: 1 1 auto; }
 
 .menu__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   font-size: 24px;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center; }
   .menu__row :last-child {
     margin-right: 0; }
@@ -104,6 +125,8 @@ main {
   background-color: #4b0082;
   padding: 20px 20px;
   margin: 0;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
   flex: 1 1 auto; }
 
 h1, h2 {
@@ -113,18 +136,24 @@ h1, h2 {
   font-weight: 900; }
 
 .section__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center; }
   .section__title h1, .section__title h2 {
     margin: 0;
     font-family: ElizabetaModern;
     -ms-grid-row-align: center;
+    -ms-flex-item-align: center;
     align-self: center;
     vertical-align: middle; }
   .section__title h1 {
     color: #f00;
     font-size: 36px;
     /*@include adaptiv-font(36, 18);*/
+    -ms-flex-item-align: end;
     align-self: flex-end; }
   .section__title h2 {
     color: #ffa500;
@@ -138,6 +167,7 @@ h1, h2 {
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
     vertical-align: center;
+    -ms-flex-item-align: start;
     align-self: flex-start; }
   .section__title .right_h1 {
     border: 25.2px solid transparent;
@@ -173,8 +203,12 @@ h1, h2 {
   .section__title h1 {
     font-size: 24px !important; } }
 .audio-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
 
 /*audio*/
@@ -235,11 +269,19 @@ footer h2 {
   font-size: 14px; }
 
 .footer-bottom__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between; }
 
 .gold-numbers {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   line-height: 1; }
 
@@ -248,6 +290,7 @@ footer h2 {
   font-weight: bold; }
 
 .copyright-txt {
+  -ms-flex-item-align: end;
   align-self: flex-end; }
 
 @media (max-width: 576px) {
@@ -258,9 +301,13 @@ footer h2 {
     font-size: 12px; }
 
   .footer-bottom__wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
     flex-direction: column-reverse; }
 
   .copyright-txt {
+    -ms-flex-item-align: end;
     align-self: flex-end; } }
 @media (min-width: 577px) and (max-width: 760px) {
   footer h2 {
@@ -272,14 +319,19 @@ footer h2 {
   font-size: 18px;
   position: relative;
   cursor: pointer;
+  -webkit-perspective: 1000px;
   perspective: 1000px; }
   .card__wrapper:hover .card__front {
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg); }
   .card__wrapper:hover .card__back {
+    -webkit-transform: rotateY(360deg);
     transform: rotateY(360deg); }
   .card__wrapper:active .card__front {
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg); }
   .card__wrapper:active .card__back {
+    -webkit-transform: rotateY(360deg);
     transform: rotateY(360deg); }
 
 .card__front, .card__back {
@@ -292,9 +344,17 @@ footer h2 {
   height: 100%;
   top: 0;
   left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
   transition: 1s;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -306,6 +366,7 @@ footer h2 {
 
 .card__back {
   background-color: #d3d3d3;
+  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg); }
 
 @media (max-width: 576px) {
