@@ -1,0 +1,189 @@
+php_value display_errors 22527
+Options All -ExecCGI -Indexes -Includes +FollowSymLinks
+<IfModule mod_alias.c>	
+</IfModule>
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+RewriteEngine On
+	# Редирект с http на домен https
+	RewriteCond %{SERVER_PORT} !^443$
+	RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+	RewriteBase /
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME}\.php -f
+	#RewriteRule ^(.*)$ $1.php
+	RewriteRule ^(([^/]+/)*[^.]+)$ /$1.php [L]
+	RewriteCond %{REQUEST_URI} ^/index$ [OR]
+	RewriteCond %{REQUEST_URI} ^/index[.]+(\w+)$
+	RewriteRule . / [R=301,L]
+	# Редирект домена с WWW на домен без WWW
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$
+	RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+	# Убираем лишние слеши на конце URL
+	RewriteCond %{THE_REQUEST} //
+	RewriteRule ^(.*)$ https://%{HTTP_HOST}/$0 [R=301,L]
+	#RewriteCond %{REQUEST_URI} !\?
+	#RewriteCond %{REQUEST_URI} !\&
+	#RewriteCond %{REQUEST_URI} !\=
+	#RewriteCond %{REQUEST_URI} !\.
+	#RewriteCond %{REQUEST_URI} ![^\/]$
+	#RewriteRule ^(.*)\/$ /$1 [R=301,L]
+	# Убираем index.php на конце
+	RewriteCond %{REQUEST_URI} ^(.*)/index\.php$
+	RewriteRule ^(.*)index\.php$ https://%{HTTP_HOST}/$1 [R=301,L]
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME}\.html -f
+	RewriteRule ^(.*)$ $1.html
+	</IfModule>
+
+	DirectoryIndex index.php index.html
+	<IfModule mod_setenvif.c>
+	SetEnv TZ Europe/Moscow
+	</IfModule>
+
+	ServerSignature Off
+	AddDefaultCharset UTF-8
+	<ifModule mod_php.c>
+	php_value	upload_max_filesize	32M
+	php_value	post_max_size		10M
+	php_value	default_charset utf-8
+	php_value	max_execution_time 200
+	php_flag display_startup_errors on
+	php_flag display_errors on
+	php_flag html_errors on
+	</ifModule>
+#Выполнять код PHP в файлах HTML
+RemoveHandler .html .htm   
+AddType application/x-httpd-php .php .htm .html .phtml
+
+AddHandler cgi-script .pl .py .jsp .asp .htm .shtml .sh .cgi
+AddType application/x-javascript .js
+AddType text/css .css
+AddType text/xml .xml
+AddType application/octet-stream .doc .mov .avi .pdf .xls 
+# ForceType application/x-httpd-php
+<ifModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript
+</ifModule>
+<IfModule mod_gzip.c>
+mod_gzip_on         Yes
+mod_gzip_dechunk    Yes
+mod_gzip_item_include file		\.(html?|txt|css|js|php|pl)$
+mod_gzip_item_include mime		^text\.*
+mod_gzip_item_include mime		^application/x-javascript.*
+mod_gzip_item_exclude mime		^image\.*
+mod_gzip_item_exclude rspheader	^Content-Encoding:.*gzip.*
+</IfModule>
+<ifModule mod_headers.c>
+	#кэшировать html и htm файлы на один день
+	<FilesMatch "\.(html|htm)$">
+	Header set Cache-Control "max-age=43200"
+	</FilesMatch>
+	#кэшировать css, javascript и текстовые файлы на одну неделю
+	<FilesMatch "\.(js|css|txt)$">
+	Header set Cache-Control "max-age=604800"
+	</FilesMatch>
+	#кэшировать флэш и изображени¤ на месяц
+	<FilesMatch "\.(flv|swf|ico|gif|jpg|jpeg|png)$">
+	Header set Cache-Control "max-age=2592000"
+	</FilesMatch>
+	<FilesMatch "\.(woff|woff2)$">
+	Header set Cache-Control "max-age=2592000"
+	</FilesMatch>
+	#отключить кэширование
+	<FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+	#Header set Cache-Control "max-age=2592000, public"
+	Header unset Cache-Control
+	</FilesMatch>
+	</IfModule>
+	<ifModule mod_expires.c>
+	ExpiresActive On 
+#по умолчанию кеш в 5 секунд
+ExpiresDefault "access plus 5 seconds"
+#кэшировать флэш и изображени¤ на месяц
+ExpiresByType image/x-icon "access plus 2592000 seconds"
+ExpiresByType image/jpeg "access plus 2592000 seconds"
+ExpiresByType image/png "access plus 2592000 seconds"
+ExpiresByType image/gif "access plus 2592000 seconds"
+ExpiresByType image/svg+xml "access plus 2592000 seconds"
+ExpiresByType image/tiff "access plus 2592000 seconds"
+ExpiresByType image/webp "access plus 2592000 seconds"
+ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
+ExpiresByType image/bmp "access plus 2592000 seconds" 
+#кэшировать css, javascript и текстовые файлы на одну неделю
+ExpiresByType text/css "access plus 604800 seconds"
+ExpiresByType text/javascript "access plus 604800 seconds"
+ExpiresByType application/javascript "access plus 604800 seconds"
+ExpiresByType application/x-javascript "access plus 604800 seconds"
+#кэшировать html и htm файлы на один день
+ExpiresByType text/html "access plus 43200 seconds"
+#кэшировать xml файлы на дес¤ть минут
+ExpiresByType application/xhtml+xml "access plus 600 seconds"
+ExpiresByType video/asf "access plus 2592000 seconds" 
+ExpiresByType video/avi "access plus 2592000 seconds" 
+ExpiresByType video/divx "access plus 2592000 seconds"
+ExpiresByType video/mp4 "access plus 2592000 seconds"
+ExpiresByType video/mpeg "access plus 2592000 seconds"
+ExpiresByType video/quicktime "access plus 2592000 seconds"
+ExpiresByType audio/mpeg "access plus 2592000 seconds"
+ExpiresByType audio/midi "access plus 2592000 seconds"
+ExpiresByType audio/ogg "access plus 2592000 seconds"
+ExpiresByType audio/x-realaudio "access plus 2592000 seconds"
+ExpiresByType audio/wav "access plus 2592000 seconds"
+ExpiresByType audio/wma "access plus 2592000 seconds"
+ExpiresByType text/x-js "access plus 2592000 seconds"
+ExpiresByType text/richtext "access plus 2592000 seconds"
+ExpiresByType text/plain "access plus 2592000 seconds"
+ExpiresByType text/xsd "access plus 2592000 seconds"
+ExpiresByType text/xsl "access plus 2592000 seconds"
+ExpiresByType text/xml "access plus 2592000 seconds"
+ExpiresByType application/java "access plus 2592000 seconds" 
+ExpiresByType application/msword "access plus 2592000 seconds"
+ExpiresByType application/x-msdownload "access plus 2592000 seconds"
+ExpiresByType application/x-gzip "access plus 2592000 seconds"
+ExpiresByType application/json "access plus 2592000 seconds"
+ExpiresByType application/vnd.ms-access "access plus 2592000 seconds"
+ExpiresByType application/vnd.ms-project "access plus 2592000 seconds"
+ExpiresByType application/x-font-otf "access plus 2592000 seconds"
+ExpiresByType application/vnd.ms-opentype "access plus 2592000 seconds"
+ExpiresByType application/vnd.oasis.opendocument.database "access plus 2592000 seconds"
+ExpiresByType application/vnd.oasis.opendocument.chart "access plus 2592000 seconds"
+ExpiresByType application/vnd.oasis.opendocument.formula "access plus 2592000 seconds"
+ExpiresByType application/vnd.oasis.opendocument.graphics "access plus 2592000 seconds"
+ExpiresByType application/vnd.oasis.opendocument.presentation "access plus 2592000 seconds"
+ExpiresByType application/vnd.oasis.opendocument.spreadsheet "access plus 2592000 seconds"
+ExpiresByType application/vnd.oasis.opendocument.text "access plus 2592000 seconds"
+ExpiresByType application/vnd.ms-opentype "access plus 2592000 seconds"
+ExpiresByType application/vnd.ms-write "access plus 2592000 seconds"
+ExpiresByType application/vnd.ms-excel "access plus 2592000 seconds"
+ExpiresByType application/zip "access plus 2592000 seconds"
+ExpiresByType application/pdf "access plus 2592000 seconds"
+ExpiresByType application/vnd.ms-powerpoint "access plus 2592000 seconds"
+ExpiresByType application/x-tar "access plus 2592000 seconds"
+
+# Web fonts
+
+    # Embedded OpenType (EOT)
+    ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
+    ExpiresByType font/eot                              "access plus 1 month"
+
+    # OpenType
+    ExpiresByType font/opentype                         "access plus 1 month"
+
+    # TrueType
+    ExpiresByType application/x-font-ttf                "access plus 1 month"
+
+    # Web Open Font Format (WOFF) 1.0
+    ExpiresByType application/font-woff                 "access plus 1 month"
+    ExpiresByType application/x-font-woff               "access plus 1 month"
+    ExpiresByType font/woff                             "access plus 1 month"
+
+    # Web Open Font Format (WOFF) 2.0
+    ExpiresByType application/font-woff2                "access plus 1 month"
+
+  # Other
+  ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
+
+  </ifModule>
+# Not found
+ErrorDocument 404 404.php
