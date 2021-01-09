@@ -1,1 +1,2 @@
+#!/usr/bin/env bash
 browser-sync start --proxy https://sysoev84l.ddns.net --files "*.css,assets/js/*.js,assets/scss/*.scss,assets/css/*.css,*.html,*.*"
