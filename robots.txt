@@ -1,0 +1,22 @@
+User-agent: *
+Disallow:
+Disallow: /404.php
+Disallow: /assets/*
+Allow: *
+Sitemap: https://sysoev84l.ddns.net/sitemap.xml
+
+User-agent: Yandex
+Disallow:
+Disallow: /404.php
+Disallow: /assets/*
+Allow: *
+Host: https://sysoev84l.ddns.net
+
+User-agent: Googlebot
+Disallow:
+Disallow: /404.php
+Disallow: /assets/*
+Allow: *
+Allow: *.css
+Allow: *.js
+
